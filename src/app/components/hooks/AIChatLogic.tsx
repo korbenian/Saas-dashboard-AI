@@ -21,9 +21,9 @@ export const useChatLogic = () => {
     setMessages(prev => [...prev, userMsg])
     setInput('')
     setLoading(true)
- 
+
     try {
-      const { data } = await axios.post('http://localhost:3001/api/chat', {
+      const { data } = await axios.post('/api/chat', {
         message: userMsg.content
       })
       const reply = data.choices?.[0]?.message?.content ?? '— пустой ответ —'
