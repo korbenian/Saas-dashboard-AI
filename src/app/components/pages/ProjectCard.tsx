@@ -1,6 +1,10 @@
 'use client'
 
-import { getRandomProgress, FormatDate } from '../../utils/utils'
+import {
+  getRandomProgress,
+  FormatDate,
+  calculateProgress
+} from '../../utils/utils'
 import { useLocale } from '../Language/LocaleProvider'
 import { t } from '../Language/i18n'
 import Link from 'next/link'
@@ -57,7 +61,7 @@ export const ProjectCard = () => {
                   new Date(b.dataStart).getTime()
               )
               .map(p => {
-                const progress = getRandomProgress()
+                const progress = calculateProgress(p.dataStart, p.dataEnd)
 
                 return (
                   <motion.div
@@ -81,10 +85,12 @@ export const ProjectCard = () => {
                     </p>
                     <div className='mt-4'>
                       <div className='w-full bg-gray-300 rounded-full h-3 overflow-hidden'>
-                        <div
-                          className='bg-green-500 h-3 transition-all duration-300'
-                          style={{ width: `${progress}%` }}
-                        ></div>
+                        <motion.div
+                          className='bg-green-500 h-3'
+                          initial={{ width: 0 }}
+                          animate={{ width: `${progress}%` }}
+                          transition={{ duration: 0.6 }}
+                        />
                       </div>
                       <p className='text-sm text-gray-600 mt-1'>
                         {t('completed', locale, { progress: `${progress}` })}
