@@ -6,18 +6,17 @@ export function FormatDate (datestring: string) {
   })
 }
 
-export function calculateProgress (dataEnd: string, dataStart: string) {
-  const start = new Date(dataStart).getDate()
-  const end = new Date(dataEnd).getDate()
+export function calculateProgress (dataStart: string, dataEnd: string) {
+  if (!dataStart || !dataEnd) {
+    return Math.floor(Math.random() * 101) // рандом, как раньше
+  }
+  const start = new Date(dataStart).getTime()
+  const end = new Date(dataEnd).getTime()
   const now = Date.now()
-  if (now < start) return 0
-  if (now > end) return 0
-  const total = end - start
-  const passed = now - start
-  return Math.round((passed / total) * 100)
-}
 
-export function getRandomProgress () {
-  return Math.floor(Math.random() * 40) + 40
-} // ⚠️ Временно используем случайный прогресс (от 40% до 80%) для красоты интерфейса.
-// В будущем можно заменить на реальный расчёт по задачам проекта.
+  if (isNaN(start) || isNaN(end)) return Math.floor(Math.random() * 101)
+  if (now < start) return 0
+  if (now > end) return 100
+
+  return Math.round(((now - start) / (end - start)) * 100)
+}
