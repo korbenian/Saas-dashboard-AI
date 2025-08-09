@@ -10,7 +10,7 @@ import {
   deleteDoc
 } from 'firebase/firestore'
 import { db } from '../../../lib/firebase'
-import { getRandomProgress } from '../../utils/utils'
+import { calculateProgress } from '../../utils/utils' // импортируем новую функцию
 
 export interface Project {
   name: string
@@ -46,15 +46,17 @@ export function useProject (email: string): ProjectData {
         where('userEmail', '==', email)
       )
       const snapshot = await getDocs(q)
+
       const data = snapshot.docs.map(docSnap => {
         const raw = docSnap.data()
         return {
           ...raw,
           index: docSnap.id,
-          progress: getRandomProgress(),
+          progress: calculateProgress(raw.dataStart, raw.dataEnd), // тут считаем реальный прогресс
           tasks: raw.tasks || []
         } as Project
       })
+
       setProjects(data)
     } catch (err) {
       setError('Ошибка загрузки проектов')
