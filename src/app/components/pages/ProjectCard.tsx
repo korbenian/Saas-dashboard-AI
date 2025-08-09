@@ -1,10 +1,6 @@
 'use client'
 
-import {
-  getRandomProgress,
-  FormatDate,
-  calculateProgress
-} from '../../utils/utils'
+import { FormatDate, calculateProgress } from '../../utils/utils'
 import { useLocale } from '../Language/LocaleProvider'
 import { t } from '../Language/i18n'
 import Link from 'next/link'

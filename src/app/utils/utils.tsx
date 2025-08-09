@@ -14,7 +14,7 @@ export function calculateProgress (dataEnd: string, dataStart: string) {
   if (now > end) return 0
   const total = end - start
   const passed = now - start
-  return Math.round((total / passed) * 100)
+  return Math.round((passed / total) * 100)
 }
 
 export function getRandomProgress () {
