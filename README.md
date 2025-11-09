@@ -56,5 +56,6 @@ A link to the Vercel deployment will also be added.
 Заполните их и переименуйте .env.example в .env и .env.local.example в .env.local
 
 
-Также будет размещена ссылка на Vercel
+ ссылка на Vercel
+https://vercel.com/sergey-korobovs-projects/saas-dashboard-ai
 ```
