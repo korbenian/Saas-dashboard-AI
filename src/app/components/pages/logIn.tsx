@@ -2,14 +2,14 @@
 import { t } from '../Language/i18n'
 import { signIn } from 'next-auth/react'
 import { useLocale } from '../Language/LocaleProvider'
-import ChangeLang from '../actions/ChangeLang'
+
 export default function LoginPage () {
   const { locale } = useLocale()
   return (
     <>
       <div className='min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4'>
         <div className='fixed top-3 left-0 z-10 mb-[5%]  py-2 px-4 rounded-lg transition'>
-          <ChangeLang />
+         
         </div>
         <div className='bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-8 w-full max-w-sm text-center'>
           <h1 className='text-3xl font-extrabold text-blue-600 dark:text-white mb-6'>
